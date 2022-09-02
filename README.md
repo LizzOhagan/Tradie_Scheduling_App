@@ -1,2 +1,2 @@
-# Tradie_Scheduling_App
+# Tradie Scheduling App
 An app that enables tradies to track jobs
