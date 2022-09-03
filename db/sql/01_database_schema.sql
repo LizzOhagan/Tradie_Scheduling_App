@@ -16,7 +16,7 @@ CREATE TABLE job_status (
 
 CREATE TABLE job (
     id SERIAL PRIMARY KEY,
-    type TIMESTAMP,
+    date_created TIMESTAMP,
     client_id int REFERENCES client_details(id),
     status_id int REFERENCES job_status(id),
     quote money default NULL,
