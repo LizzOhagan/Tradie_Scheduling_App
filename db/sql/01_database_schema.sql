@@ -2,10 +2,10 @@ CREATE DATABASE keepTradingSchedule;
 
 CREATE TABLE client_details (
     id SERIAL PRIMARY KEY,
-    first_name text,
-    last_name text,
-    phone varchar,
-    address varchar,
+    first_name text(255),
+    last_name text(255),
+    phone varchar(50),
+    address varchar(400),
     email varchar(100)
 );
 
@@ -15,6 +15,8 @@ CREATE TABLE job_status (
     id SERIAL PRIMARY KEY,
     type status
 );
+
+
 
 CREATE TABLE job (
     id SERIAL PRIMARY KEY,
