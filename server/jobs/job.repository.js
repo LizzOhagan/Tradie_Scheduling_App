@@ -20,11 +20,11 @@ j.id`;
 
 module.exports = {
   getJobs: async () => {
-    // try {
-    const result = await db.query(getAllJobsSQL);
-    return result.rows;
-    // } catch (error) {
-    //   throw Error(error);
-    // }
+    try {
+      const result = await db.query(getAllJobsSQL);
+      return result.rows;
+    } catch (error) {
+      throw Error(error);
+    }
   },
 };
