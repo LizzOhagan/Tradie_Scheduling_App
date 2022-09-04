@@ -6,6 +6,10 @@ An app that enables tradies to track jobs.
 
 This app is a fake tradie app that enables tradies to read and update the jobs they are working on.
 
+The app is a PERN stack using PostgresSQL.
+
+A SQL database gives me the flexibility to join different data sets from different tables. Using a SQL database also makes it easier to query the data.
+
 **_Please Note:  
 This app is still a work in progress and will develop as I continue to work on it._**
 
