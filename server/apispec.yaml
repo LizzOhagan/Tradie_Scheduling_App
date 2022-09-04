@@ -1,0 +1,240 @@
+openapi: 3.0.0
+info:
+  title: TradieApp
+  version: "1.0"
+  description: An app that enables tradies to track jobs
+  contact:
+    name: Keep Me Trading
+    url: "http://keepmetrading.com"
+    email: admin@keepmetrading.com
+  license:
+    name: n/a
+    url: n/a
+servers:
+  - url: "http://localhost:5001/api"
+    description: Development server
+paths:
+  /jobs:
+    get:
+      summary: /jobs
+      operationId: get-jobs
+      description: get a list of jobs
+      tags:
+        - jobs
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+        "400":
+          $ref: "#/components/responses/400"
+        "500":
+          $ref: "#/components/responses/500"
+  "/job{jobId}":
+    get:
+      summary: "/job/{jobId}"
+      operationId: get-job-jobId
+      description: Get a job by ID
+      tags:
+        - jobs
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+        "400":
+          $ref: "#/components/responses/400"
+        "404":
+          $ref: "#/components/responses/404"
+        "500":
+          $ref: "#/components/responses/500"
+    put:
+      summary: "/job/{jobId}"
+      operationId: put-job-jobId
+      description: Update an existing job
+      tags:
+        - jobs
+      responses:
+        "200":
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Update-Existing-Job"
+    parameters:
+      - schema:
+          type: string
+        name: jobId
+        in: path
+        required: true
+        description: This is a job's ID
+  "/jobs/{jobStatus}":
+    get:
+      summary: "/jobs/{jobStatus}"
+      operationId: get-jobs-jobScheduled
+      description: get a list of jobs by their status
+      parameters:
+        - schema:
+            type: string
+          name: jobStatus
+          in: path
+          required: true
+          description: This is a job's status
+      tags:
+        - jobs
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+        "400":
+          $ref: "#/components/responses/400"
+        "404":
+          $ref: "#/components/responses/404"
+        "500":
+          $ref: "#/components/responses/500"
+
+components:
+  schemas:
+    Job:
+      title: Job
+      type: object
+      description: Schema for /job
+      x-examples:
+        Job Example:
+          $ref: "#/components/examples/Job"
+      properties:
+        id:
+          type: integer
+        dateCreated:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        address:
+          type: string
+        email:
+          type: string
+        status:
+          type: string
+          enum:
+            - scheduled
+            - active
+            - invoicing
+            - to be priced
+            - completed
+        quote:
+          type: string
+          nullable: true
+        jobScope:
+          type: string
+          nullable: true
+      required:
+        - id
+        - dateCreated
+        - firstName
+        - lastName
+        - phone
+        - address
+        - email
+        - status
+        - quote
+        - jobScope
+    Update-Existing-Job:
+      title: Update existing job
+      type: object
+      description: "Schema for updating an existing job.  /job/{jobId}"
+      x-examples:
+        Job Example:
+          $ref: "#/components/examples/Job"
+      properties:
+        quote:
+          type: string
+          nullable: true
+        jobScope:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+            - scheduled
+            - active
+            - invoicing
+            - to be priced
+            - completed
+      required:
+        - quote
+        - jobScope
+        - status
+  responses:
+    "400":
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          examples:
+            400 Bad Request:
+              $ref: "#/components/examples/400-Bad-Request"
+    "404":
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          examples:
+            404 Not Found:
+              $ref: "#/components/examples/404-Not-Found"
+    "500":
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          examples:
+            500 Internal Server Error:
+              $ref: "#/components/examples/500-Internal-Server-Error"
+  examples:
+    Job:
+      value:
+        id: 1
+        dateCreated: "2022-07-12 16:30:00"
+        firstName: Han
+        lastName: Solo
+        phone: "123456"
+        address: "9 Millennium Falcon Ave, Georgetown, 5436"
+        email: han@scoundrals.com
+        status: Completed
+        quote: $200.00
+        jobScope: Hyperdrive needs fixing
+    400-Bad-Request:
+      value:
+        message: Bad request
+    404-Not-Found:
+      value:
+        message: Not found
+    500-Internal-Server-Error:
+      value:
+        message: Internal server error
+tags:
+  - name: jobs
+    description: Get a list of jobs
