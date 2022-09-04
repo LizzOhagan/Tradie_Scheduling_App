@@ -10,17 +10,17 @@ services:
   #   volumes:
   #     - ./client:/app/
   #     - /app/node_modules
-  # server:
-  #   build:
-  #     context: ./server
-  #   ports:
-  #     - "5001:5001"
-  #     - "9229:9229"
-  #   depends_on:
-  #     - db
-  #   volumes:
-  #     - ./server:/app
-  #     - /app/node_modules
+  server:
+    build:
+      context: ./server
+    ports:
+      - "5001:5001"
+      - "9229:9229"
+    depends_on:
+      - db
+    volumes:
+      - ./server:/app
+      - /app/node_modules
   db:
     build:
       context: ./db

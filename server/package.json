@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "start:dev": "nodemon --inspect=0.0.0.0:9229 index.js",
+    "test": "jest --watchAll --colors --verbose",
+    "lint:js": "eslint .",
+    "prettier:check": "prettier --check '**/*.js'"
   },
   "author": "",
   "license": "ISC",
