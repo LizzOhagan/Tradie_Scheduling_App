@@ -13,13 +13,16 @@ services:
   server:
     build:
       context: ./server
+    environment:
+      - PGHOST=db
     ports:
       - "5001:5000"
-    depends_on:
-      - db
-    volumes:
-      - ./server:/app
-      - /app/node_modules
+    # why does cat couture have this stuff below but the docker compose exercise does not?
+    # depends_on:
+    #   - db
+    # volumes:
+    #   - ./server:/app
+    #   - /app/node_modules
 
   db:
     build:
