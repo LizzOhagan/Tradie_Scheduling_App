@@ -1,7 +1,6 @@
 const db = require("../db");
 
 const getAllJobsSQL = `SELECT
-SELECT
 j.id,
 j.date_created AS "dateCreated",
 cd.first_name AS "firstName",
