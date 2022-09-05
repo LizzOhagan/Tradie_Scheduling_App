@@ -36,9 +36,9 @@ To run this application you need to install:
 4. Open docker on your computer
 5. run `docker-compose up --build` in the root file of the project. NOTE: the db and server containers will start. The client container is still to be implemented.
 
-**NOTE: the client container is not yet talking to the db container. The work around at this stage to:**
+<!-- **NOTE: the client container is not yet talking to the db container. The work around at this stage to:**
 
 1. build the docker containers - but turn off the server container.
 2. run `docker-compose down` to kill the port
 3. in docker - manually turn on the db container
-4. run `npm run start:dev` in the server so the port listens on port 5001.
+4. run `npm run start:dev` in the server so the port listens on port 5001. -->

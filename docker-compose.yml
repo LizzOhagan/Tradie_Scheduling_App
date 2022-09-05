@@ -17,7 +17,6 @@ services:
       - PGHOST=db
     ports:
       - "5001:5001"
-    # why does cat couture have this stuff below but the docker compose exercise does not?
     # depends_on:
     #   - db
     # volumes:
