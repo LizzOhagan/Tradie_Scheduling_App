@@ -7,13 +7,13 @@ const errorHandlerMiddleware = require("./middleware/errorHandlerMiddleware");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
 const fs = require("fs");
-// const swaggerDocument = YAML.load("./apispec.yaml");
+const swaggerDocument = YAML.load("./apispec.yaml");
 
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// const swaggerDocument = yaml.load(
+//   fs.readFileSync(path.join(__dirname, "./apispec.yaml"), "utf8")
+// );
 
-const swaggerDocument = yaml.load(
-  fs.readFileSync(path.join(__dirname, "./apispec.yaml"), "utf8")
-);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //middleware
 app.use(cors());

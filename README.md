@@ -35,6 +35,7 @@ To run this application you need to install:
 3. run `npm install` in the client (this folder is yet to be implemented)
 4. Open docker on your computer
 5. run `docker-compose up --build` in the root file of the project. NOTE: the db and server containers will start. The client container is still to be implemented.
+6. Open a browser and go to http://localhost:5001/api-docs/ to use Swagger API docs.
 
 <!-- **NOTE: the client container is not yet talking to the db container. The work around at this stage to:**
 
