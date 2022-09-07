@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const router = require("./jobs/job.router");
+const jobsRouter = require("./jobs/jobs.router");
 const errorHandlerMiddleware = require("./middleware/errorHandlerMiddleware");
 const swaggerUi = require("swagger-ui-express");
 const YAML = require("yamljs");
@@ -24,7 +24,7 @@ app.use(express.json());
 // });
 
 // routes
-app.use("/jobs", router); // route not yet working in insomnia
+app.use("/", jobsRouter);
 
 // TODO:
 // app.use("/jobs/:id")

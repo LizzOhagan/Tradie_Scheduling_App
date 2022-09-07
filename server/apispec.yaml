@@ -32,9 +32,9 @@ paths:
           $ref: "#/components/responses/400"
         "500":
           $ref: "#/components/responses/500"
-  "/job{jobId}":
+  "/jobs/{jobId}":
     get:
-      summary: "/job/{jobId}"
+      summary: "/jobs/{jobId}"
       operationId: get-job-jobId
       description: Get a job by ID
       tags:
@@ -53,7 +53,7 @@ paths:
         "500":
           $ref: "#/components/responses/500"
     put:
-      summary: "/job/{jobId}"
+      summary: "/jobs/{jobId}"
       operationId: put-job-jobId
       description: Update an existing job
       tags:
@@ -73,11 +73,11 @@ paths:
         in: path
         required: true
         description: This is a job's ID
-  "/jobs/{jobStatus}":
+  "/jobs/{completed}":
     get:
-      summary: "/jobs/{jobStatus}"
-      operationId: get-jobs-jobScheduled
-      description: get a list of jobs by their status
+      summary: "/jobs/{completed}"
+      operationId: get-jobs-jobCompleted
+      description: get a list of jobs completed jobs
       parameters:
         - schema:
             type: string
