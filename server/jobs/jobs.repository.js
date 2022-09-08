@@ -52,14 +52,24 @@ module.exports = {
     }
   },
 
-  updateJobStatus: async (id, status) => {
+  updateJobClientDetails: async (
+    firstName,
+    lastName,
+    phone,
+    address,
+    email,
+    id
+  ) => {
     try {
       const { rows } = await db.query(
-        `UPDATE job
-        SET status_id = $1
-        WHERE id = $2
-        RETURNING id, status_id AS status, 
-        `[(status, id)]
+        `UPDATE client_details 
+        SET first_name=$1,
+        last_name=$2,
+        phone=$3,
+        address=$4,
+        email=$5
+        WHERE id=$6, 
+        `[(firstName, lastName, phone, address, email, id)]
       );
       return rows[0];
     } catch (error) {

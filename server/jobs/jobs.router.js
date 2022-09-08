@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const getJobs = require("./jobs.repository");
 
-//get all jobs
+//get all jobs - Working
 router.get("/jobs/", async (req, res, next) => {
   try {
     const jobs = await getJobs.getJobs();
@@ -14,7 +14,7 @@ router.get("/jobs/", async (req, res, next) => {
   }
 });
 
-// get a job by id
+// get a job by id  - Working
 router.get("/jobs/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -27,28 +27,51 @@ router.get("/jobs/:id", async (req, res) => {
   }
 });
 
-// update a job
-// router.patch("/jobs/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const { status, jobScope, quote } = req.body;
-//   const updatedJob = await getJobs.updateJob(id, status, jobScope, quote);
-//   res.json(updatedJob);
-// });
+// ----------------------------------------------------------------------------------
+// update a job's client details
 
-// get a job by status: completed
-// router.get("/jobs/status/:status", async (req, res) => {
-//   try {
-//     const { status } = req.params;
-//     console.log(req.params);
-//     const completedJobs = await getJobs.getCompletedJobs(status);
-//     console.log(completedJobs);
-//     return res.json(completedJobs);
-//   } catch (err) {
-//     next(err.message);
-//   }
-// });
+// not yet working!!
+// ----------------------------------------------------------------------------------
 
-// get a job by status: active
+router.patch("/jobs/:id", async (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, phone, address, email } = req.body;
+  const updatedJobClientDetails = await getJobs.updateJobClientDetails(
+    firstName,
+    lastName,
+    phone,
+    address,
+    email,
+    id
+  );
+  res.json(updatedJobClientDetails);
+});
+
+// ----------------------------------------------------------------------------------
+// get a job by status: 'completed'
+
+// NOTE this works BUT... you can't repeat the logic for the other status' - the route will only ever show the 'completed' jobs -->  So - not really working LOL!!!
+// ----------------------------------------------------------------------------------
+router.get("/jobs/status/:status", async (req, res) => {
+  try {
+    const { status } = req.params;
+    console.log(req.params);
+    const completedJobs = await getJobs.getCompletedJobs(status);
+    console.log(completedJobs);
+    return res.json(completedJobs);
+  } catch (err) {
+    next(err.message);
+  }
+});
+
+// ----------------------------------------------------------------------------------
+// 2nd attempt at ^ but this time doing it by status
+
+// get a job by status
+
+// NOT WORKING: this only returns an empty array.
+// When I pass in jobsByStatus into the ( ) of the IF statement - then it returns the completed jobs but only ever the completed jobs
+// ----------------------------------------------------------------------------------
 router.get("/jobs/status/:status", async (req, res) => {
   try {
     const { completed, active } = req.query;

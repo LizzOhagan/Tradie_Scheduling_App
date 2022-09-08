@@ -27,7 +27,6 @@ app.use(express.json());
 app.use("/", jobsRouter);
 
 // TODO:
-// app.use("/jobs/:id")
 // app.use("/jobs/:status")
 
 // error handling middleware
