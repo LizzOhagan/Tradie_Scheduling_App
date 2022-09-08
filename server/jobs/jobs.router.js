@@ -15,7 +15,7 @@ router.get("/jobs/", async (req, res, next) => {
 });
 
 // get a job by id  - Working
-router.get("/jobs/:id", async (req, res) => {
+router.get("/jobs/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     console.log(req.params);
@@ -48,6 +48,17 @@ router.patch("/jobs/:id", async (req, res) => {
 });
 
 // get by status - need to use the same ideas as pagination - status is a query param.
+
+router.get("/jobs/", async (req, res, next) => {
+  try {
+    const { status } = req.query;
+    const getJobsByStatus = await getJobs.getJobsByStatus(status);
+
+    return res.json(getJobsByStatus);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // ----------------------------------------------------------------------------------
 // get a job by status: 'completed'

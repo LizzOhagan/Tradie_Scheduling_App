@@ -79,7 +79,7 @@ module.exports = {
 
   getJobsByStatus: async (status) => {
     try {
-      const { rows } = await db.query(
+      const result = await db.query(
         `SELECT 
         j.id, 
         j.date_created AS "dateCreated", 
@@ -96,7 +96,7 @@ module.exports = {
         WHERE type = '$1'`,
         [status]
       );
-      return rows;
+      return result.rows;
     } catch (error) {
       throw Error(error.message);
     }
