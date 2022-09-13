@@ -5,18 +5,6 @@ const getJobs = require("./jobs.repository");
 
 //get all jobs - Working
 
-// router.get("/jobs/", async (req, res, next) => {
-//   try {
-//     const { status } = req.query;
-
-//     jobs = await getJobs.getJobsByStatus(status);
-//     console.log(jobs[0]);
-//     return res.json(jobs);
-//   } catch (err) {
-//     next(err.message);
-//   }
-// });
-
 router.get("/jobs/", async (req, res, next) => {
   try {
     const { status } = req.query;
@@ -35,27 +23,6 @@ router.get("/jobs/", async (req, res, next) => {
     next(err);
   }
 });
-
-// router.get("/jobs/", async (req, res, next) => {
-//   try {
-//     const jobs = await getJobs.getJobs();
-//     // console.log(jobs);
-//     return res.json(jobs);
-//   } catch (err) {
-//     next(err.message);
-//   }
-// });
-
-// router.get("/jobs/", async (req, res, next) => {
-//   try {
-//     const { status } = req.query;
-//     const JobsByStatus = await getJobs.getJobsByStatus(status);
-
-//     return res.json(JobsByStatus);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 // get a job by id  - Working
 router.get("/jobs/:id", async (req, res, next) => {
