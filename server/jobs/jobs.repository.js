@@ -77,6 +77,7 @@ module.exports = {
     }
   },
 
+  // NOTE added in statusToUppercase below to ensure that the query string converts the status to first letter upperCase and the rest is lowerCase so that the query recongises what is in the database.
   getJobsByStatus: async (status) => {
     console.log(status);
     const statusToUppercase = `${status[0].toUpperCase()}${status
