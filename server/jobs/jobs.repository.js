@@ -49,8 +49,12 @@ WHERE type = $1
 ORDER BY j.id`;
 
 const updateJobSQL = `UPDATE job 
-SET quote = $1
-Where id = $2 
+SET 
+quote = $1,
+job_scope = $2,
+status_id = $3
+
+WHERE id = $4 
 
 RETURNING *`;
 
@@ -86,11 +90,16 @@ module.exports = {
     }
   },
 
-  updateJob: async (quote, id) => {
+  updateJob: async (quote, job_scope, status_id, id) => {
     try {
-      const { rows } = await db.query(updateJobSQL, [quote, id]);
-      console.log(quote, id);
-      console.log(rows);
+      const { rows } = await db.query(updateJobSQL, [
+        quote,
+        job_scope,
+        status_id,
+        id,
+      ]);
+      // console.log(quote, id);
+      // console.log(rows);
 
       return rows[0];
     } catch (error) {

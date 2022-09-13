@@ -45,10 +45,10 @@ router.get("/jobs/:id", async (req, res, next) => {
 
 router.put("/jobs/:id", async (req, res, next) => {
   const { id } = req.params;
-  const { quote } = req.body;
-  console.log(quote);
-  const updatedJob = await getJobs.updateJob(quote, id);
-  console.log(updatedJob);
+  const { quote, job_scope, status_id } = req.body;
+  // console.log(quote);
+  const updatedJob = await getJobs.updateJob(quote, job_scope, status_id, id);
+  // console.log(updatedJob);
   res.json(updatedJob);
 });
 
