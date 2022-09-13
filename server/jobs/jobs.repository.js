@@ -56,7 +56,7 @@ status_id = $3
 
 WHERE id = $4 
 
-RETURNING *`;
+RETURNING id, date_created AS "dateCreated", client_id AS "clientId", status_id AS "statusId", quote, job_scope AS "jobScope"`;
 
 module.exports = {
   getJobs: async () => {
