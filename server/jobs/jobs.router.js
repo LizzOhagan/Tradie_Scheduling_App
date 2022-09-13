@@ -33,7 +33,7 @@ router.get("/jobs/:id", async (req, res, next) => {
     console.log(job);
     return res.json(job);
   } catch (err) {
-    next(err.message);
+    next(err);
   }
 });
 
@@ -43,18 +43,13 @@ router.get("/jobs/:id", async (req, res, next) => {
 // not yet working!!
 // ----------------------------------------------------------------------------------
 
-router.patch("/jobs/:id", async (req, res) => {
+router.put("/jobs/:id", async (req, res, next) => {
   const { id } = req.params;
-  const { firstName, lastName, phone, address, email } = req.body;
-  const updatedJobClientDetails = await getJobs.updateJobClientDetails(
-    firstName,
-    lastName,
-    phone,
-    address,
-    email,
-    id
-  );
-  res.json(updatedJobClientDetails);
+  const { quote } = req.body;
+  console.log(quote);
+  const updatedJob = await getJobs.updateJob(quote, id);
+  console.log(updatedJob);
+  res.json(updatedJob);
 });
 
 // get by status - need to use the same ideas as pagination - status is a query param.
