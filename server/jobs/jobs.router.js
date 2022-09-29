@@ -55,16 +55,18 @@ router.get("/jobs/:id", async (req, res, next) => {
 // ----------------------------------------------------------------------------------
 
 router.put("/jobs/:id", async (req, res, next) => {
-  const { id } = req.params;
-  const { quote, job_scope, status_id } = req.body;
-  // const job = req.body;
-  // console.log(quote);
-  const updatedJob = await getJobs.updateJob(quote, job_scope, status_id, id);
-  // const updatedJob = await getJobs.updateJob(job);
-  // console.log(updatedJob);
-  res.json(updatedJob);
+  try {
+    const { id } = req.params;
+    const { quote, job_scope, status_id } = req.body;
+    // const job = req.body;
+    // console.log(quote);
+    const updatedJob = await getJobs.updateJob(quote, job_scope, status_id, id);
+    // const updatedJob = await getJobs.updateJob(job);
+    // console.log(updatedJob);
+    res.json(updatedJob);
+  } catch (err) {
+    next(err);
+  }
 });
-
-// get by status - need to use the same ideas as pagination - status is a query param.
 
 module.exports = router;
